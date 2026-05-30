@@ -793,7 +793,7 @@
                     nextStep.innerHTML = 'Sending request...';
 
                     try {
-                        const response = await fetch('https://goagadirtravel.com/send-booking', {
+                        const response = await fetch("https://go-agadir-travel.onrender.com/send-booking", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
