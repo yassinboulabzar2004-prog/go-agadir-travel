@@ -2,7 +2,7 @@
   "name": "go-agadir-travel-booking",
   "version": "1.0.0",
   "private": true,
-  "description": "Static Go Agadir Travel website with Express and Nodemailer booking emails.",
+  "description": "Static Go Agadir Travel website with Express and Resend booking emails.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,7 +11,6 @@
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "nodemailer": "^6.9.16"
+    "express": "^4.21.2"
   }
 }

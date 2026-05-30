@@ -1,7 +1,6 @@
 const path = require('path');
 const cors = require('cors');
 const express = require('express');
-const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
@@ -31,18 +30,36 @@ const formatMoney = (value) => {
   return Number.isFinite(number) ? `€${number}` : escapeHtml(value || '€0');
 };
 
-const requiredEnv = () => {
-  const missing = ['GMAIL_USER', 'GMAIL_PASS', 'OWNER_EMAIL'].filter((key) => !process.env[key]);
-  return missing;
-};
+const requiredEnv = () => ['RESEND_API_KEY', 'OWNER_EMAIL'].filter((key) => !process.env[key]);
 
-const createTransporter = () => nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASS
+const resendFromEmail = () => process.env.RESEND_FROM_EMAIL || 'Go Agadir Travel <bookings@goagadirtravel.com>';
+
+const sendResendEmail = async ({ to, replyTo, subject, text, html }) => {
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: resendFromEmail(),
+      to,
+      reply_to: replyTo,
+      subject,
+      text,
+      html
+    })
+  });
+
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    const message = result.message || result.error || `Resend API returned ${response.status}`;
+    throw new Error(message);
   }
-});
+
+  return result;
+};
 
 const makeRows = (rows) => rows.map(([label, value]) => `
   <tr>
@@ -180,7 +197,6 @@ app.post('/send-booking', async (req, res) => {
   const bookingId = `GAT-${Date.now().toString(36).toUpperCase()}`;
   const customer = req.body.customer;
   const booking = req.body.booking;
-  const transporter = createTransporter();
 
   const customerTemplate = buildEmailTemplate({
     title: 'Booking request received!',
@@ -201,16 +217,14 @@ app.post('/send-booking', async (req, res) => {
 
   try {
     await Promise.all([
-      transporter.sendMail({
-        from: `"Go Agadir Travel" <${process.env.GMAIL_USER}>`,
+      sendResendEmail({
         to: customer.email,
         replyTo: process.env.OWNER_EMAIL,
         subject: `Booking request received - ${booking.activity}`,
         text: buildTextEmail({ booking, customer, bookingId }),
         html: customerTemplate
       }),
-      transporter.sendMail({
-        from: `"Go Agadir Travel Website" <${process.env.GMAIL_USER}>`,
+      sendResendEmail({
         to: process.env.OWNER_EMAIL,
         replyTo: customer.email,
         subject: `New booking request: ${booking.activity}`,
