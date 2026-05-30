@@ -1,4 +1,5 @@
 const path = require('path');
+const cors = require('cors');
 const express = require('express');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
@@ -7,6 +8,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SITE_DIR = path.join(__dirname, 'HOME PAGE');
 
+app.use(cors({
+  origin: [
+    'https://goagadirtravel.com',
+    'https://www.goagadirtravel.com'
+  ],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: true
+}));
 app.use(express.json({ limit: '100kb' }));
 app.use(express.static(SITE_DIR));
 
