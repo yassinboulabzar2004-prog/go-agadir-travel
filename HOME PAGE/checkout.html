@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Your Spot | Go Agadir Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=checkout-no-summary-1">
+</head>
+<body class="checkout-body">
+    <main class="checkout-page">
+        <a class="checkout-back-top" href="index.html">&#8592; Back to home</a>
+
+        <header class="checkout-header">
+            <h1>Secure Your Spot</h1>
+
+            <div class="checkout-steps" aria-label="Checkout progress">
+                <div class="is-active" data-checkout-step="1">
+                    <span>1</span>
+                    <p>Configure</p>
+                </div>
+                <div data-checkout-step="2">
+                    <span>2</span>
+                    <p>Add-ons</p>
+                </div>
+                <div data-checkout-step="3">
+                    <span>3</span>
+                    <p>Details</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="checkout-layout">
+            <div class="checkout-config-card">
+                <div class="checkout-step-panel is-active" data-step-panel="1">
+                    <p class="checkout-kicker">Step 01</p>
+                    <h2>Configure Your Experience</h2>
+                    <p class="checkout-muted">Review activity times and customize your group size setup.</p>
+
+                    <div class="selected-date-box">
+                        <span>&#9638;</span>
+                        <div>
+                            <p>Selected date</p>
+                            <strong data-checkout-date>Jan 9, 2026</strong>
+                        </div>
+                        <button type="button" data-checkout-date-toggle>Change date</button>
+                    </div>
+
+                    <div class="checkout-date-panel">
+                        <div class="checkout-date-head">
+                            <button type="button" data-checkout-prev>&#8249;</button>
+                            <h3 data-checkout-month>May 2026</h3>
+                            <button type="button" data-checkout-next>&#8250;</button>
+                        </div>
+                        <div class="checkout-weekdays"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div>
+                        <div class="checkout-days" data-checkout-days></div>
+                        <div class="checkout-date-foot">
+                            <button type="button" data-checkout-clear>Clear</button>
+                            <button type="button" data-checkout-today>Today</button>
+                        </div>
+                    </div>
+
+                    <div class="checkout-section-label">Preferable activity start time:</div>
+                    <div class="time-grid">
+                        <button type="button" class="is-selected" data-time="09:00 AM">09:00 AM</button>
+                        <button type="button" data-time="04:00 PM">04:00 PM</button>
+                    </div>
+
+                    <div class="checkout-section-label">Choose tour category option:</div>
+                    <div class="tour-option is-selected" role="button" tabindex="0" data-tour-option="Shared Tour" data-price="18">
+                        <span class="option-radio"></span>
+                        <div>
+                            <h3>Shared Group Tour</h3>
+                            <p>Join a group of fellow explorers. Perfect for solo travelers and couples who want to explore Agadir in a lively, budget-friendly atmosphere with an expert shared guide.</p>
+                            <div class="option-tags">
+                                <span>Shared vehicle</span>
+                                <span>Standard size group</span>
+                            </div>
+                        </div>
+                        <strong>&euro;18 <small>/ traveler</small></strong>
+                    </div>
+
+                    <div class="tour-option" role="button" tabindex="0" data-tour-option="Private Tour" data-price="90">
+                        <span class="option-radio"></span>
+                        <div>
+                            <h3>Private Premium Tour</h3>
+                            <p>Secure a private luxury vehicle, dedicated private companion guide, and customized hotel pickup schedules. Great for families and custom pacing settings.</p>
+                            <div class="option-tags">
+                                <span>Dedicated luxury vehicle</span>
+                                <span>Customizable timing</span>
+                            </div>
+                        </div>
+                        <strong>&euro;90 <small>/ total up to 6</small></strong>
+                    </div>
+                </div>
+
+                <div class="checkout-step-panel" data-step-panel="2">
+                    <p class="checkout-kicker">Step 02</p>
+                    <h2>Enhance Your Agadir Trip</h2>
+                    <p class="checkout-muted">Customers who book this activity also enjoy adding these popular tours to their custom Moroccan journey.</p>
+
+                    <div class="addon-card" data-addon-card data-addon-price="25" data-addon-name="Agadir: Quad Biking and Sandboarding Tour Adventure">
+                        <img src="images/quad-biking-red-dunes.png" alt="Quad biking on red dunes">
+                        <div class="addon-main">
+                            <h3>Agadir Quad Bike Tour on the Dunes</h3>
+                            <p><span>1 hour</span> <span>Dunes ride</span></p>
+                            <small>Ride across sandy dunes, enjoy open desert views, and stop for fun photos.</small>
+                        </div>
+                        <div class="addon-price">
+                            <span>Additional price</span>
+                            <strong data-addon-total>&euro;25 <small>/ pax</small></strong>
+                            <button type="button" data-addon-toggle>Add to trip</button>
+                        </div>
+                        <div class="addon-guests">
+                            <div class="addon-guest-row">
+                                <div><strong>Adulte</strong><span>(Age 11-99)</span></div>
+                                <div class="addon-guest-controls">
+                                    <button type="button" data-addon-count="minus" data-addon-target="adult">-</button>
+                                    <span data-addon-value="adult">1</span>
+                                    <button type="button" data-addon-count="plus" data-addon-target="adult">+</button>
+                                </div>
+                            </div>
+                            <div class="addon-guest-row">
+                                <div><strong>Enfant</strong><span>(10 ans et moins)</span></div>
+                                <div class="addon-guest-controls">
+                                    <button type="button" data-addon-count="minus" data-addon-target="child">-</button>
+                                    <span data-addon-value="child">0</span>
+                                    <button type="button" data-addon-count="plus" data-addon-target="child">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addon-card" data-addon-card data-addon-price="15" data-addon-name="Agadir Camel Ride Tour on the Dunes">
+                        <img src="images/camel-dune-ride.jpg" alt="Camel ride tour in Agadir dunes">
+                        <div class="addon-main">
+                            <h3>Agadir Camel Ride Tour on the Dunes</h3>
+                            <p><span>45 minutes</span> <span>Dune trail</span></p>
+                            <small>Enjoy a calm camel ride across the dunes with time for sunset photos.</small>
+                        </div>
+                        <div class="addon-price">
+                            <span>Additional price</span>
+                            <strong data-addon-total>&euro;15 <small>/ pax</small></strong>
+                            <button type="button" data-addon-toggle>Add to trip</button>
+                        </div>
+                        <div class="addon-guests">
+                            <div class="addon-guest-row">
+                                <div><strong>Adulte</strong><span>(Age 11-99)</span></div>
+                                <div class="addon-guest-controls">
+                                    <button type="button" data-addon-count="minus" data-addon-target="adult">-</button>
+                                    <span data-addon-value="adult">1</span>
+                                    <button type="button" data-addon-count="plus" data-addon-target="adult">+</button>
+                                </div>
+                            </div>
+                            <div class="addon-guest-row">
+                                <div><strong>Enfant</strong><span>(10 ans et moins)</span></div>
+                                <div class="addon-guest-controls">
+                                    <button type="button" data-addon-count="minus" data-addon-target="child">-</button>
+                                    <span data-addon-value="child">0</span>
+                                    <button type="button" data-addon-count="plus" data-addon-target="child">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addon-card" data-addon-card data-addon-price="20" data-addon-name="Traditional Moroccan Dinner">
+                        <img src="https://alohaexcursion.com/wp-content/uploads/2026/05/P-2.jpg" alt="Traditional Moroccan dinner in the dunes">
+                        <div class="addon-main">
+                            <h3>Traditional Moroccan Dinner</h3>
+                            <p><span>Evening meal</span> <span>Local flavors</span></p>
+                            <small>Enjoy a warm Moroccan dinner after the adventure with tea and a relaxed sunset vibe.</small>
+                        </div>
+                        <div class="addon-price">
+                            <span>Additional price</span>
+                            <strong data-addon-total>&euro;20 <small>/ pax</small></strong>
+                            <button type="button" data-addon-toggle>Add to trip</button>
+                        </div>
+                        <div class="addon-guests">
+                            <div class="addon-guest-row">
+                                <div><strong>Adulte</strong><span>(Age 11-99)</span></div>
+                                <div class="addon-guest-controls">
+                                    <button type="button" data-addon-count="minus" data-addon-target="adult">-</button>
+                                    <span data-addon-value="adult">1</span>
+                                    <button type="button" data-addon-count="plus" data-addon-target="adult">+</button>
+                                </div>
+                            </div>
+                            <div class="addon-guest-row">
+                                <div><strong>Enfant</strong><span>(10 ans et moins)</span></div>
+                                <div class="addon-guest-controls">
+                                    <button type="button" data-addon-count="minus" data-addon-target="child">-</button>
+                                    <span data-addon-value="child">0</span>
+                                    <button type="button" data-addon-count="plus" data-addon-target="child">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-step-panel" data-step-panel="3">
+                    <p class="checkout-kicker">Step 03</p>
+                    <h2>Lead Traveler Details</h2>
+                    <p class="checkout-muted">Please provide lead traveler contact data. Your local Agadir concierge contacts you to coordinate schedules.</p>
+
+                    <div class="traveler-form">
+                        <label>
+                            <span>Full name *</span>
+                            <input type="text" name="fullName" placeholder="e.g. John Doe" data-lead-field="name">
+                        </label>
+                        <label>
+                            <span>Email address *</span>
+                            <input type="email" name="email" placeholder="e.g. johndoe@example.com" data-lead-field="email">
+                        </label>
+                        <label class="is-wide">
+                            <span>WhatsApp mobile number *</span>
+                            <div class="whatsapp-number-row">
+                                <select name="whatsappCountry" data-lead-field="whatsappCountry" aria-label="WhatsApp country code">
+                                    <option value="+212">(+212) Morocco</option>
+                                    <option value="+93">(+93) Afghanistan</option>
+                                    <option value="+355">(+355) Albania</option>
+                                    <option value="+213">(+213) Algeria</option>
+                                    <option value="+376">(+376) Andorra</option>
+                                    <option value="+244">(+244) Angola</option>
+                                    <option value="+1">(+1) Anguilla</option>
+                                    <option value="+1">(+1) Antigua and Barbuda</option>
+                                    <option value="+54">(+54) Argentina</option>
+                                    <option value="+374">(+374) Armenia</option>
+                                    <option value="+297">(+297) Aruba</option>
+                                    <option value="+61">(+61) Australia</option>
+                                    <option value="+43">(+43) Austria</option>
+                                    <option value="+994">(+994) Azerbaijan</option>
+                                    <option value="+1">(+1) Bahamas</option>
+                                    <option value="+973">(+973) Bahrain</option>
+                                    <option value="+880">(+880) Bangladesh</option>
+                                    <option value="+1">(+1) Barbados</option>
+                                    <option value="+375">(+375) Belarus</option>
+                                    <option value="+32">(+32) Belgium</option>
+                                    <option value="+501">(+501) Belize</option>
+                                    <option value="+229">(+229) Benin</option>
+                                    <option value="+1">(+1) Bermuda</option>
+                                    <option value="+975">(+975) Bhutan</option>
+                                    <option value="+591">(+591) Bolivia</option>
+                                    <option value="+387">(+387) Bosnia and Herzegovina</option>
+                                    <option value="+267">(+267) Botswana</option>
+                                    <option value="+55">(+55) Brazil</option>
+                                    <option value="+673">(+673) Brunei</option>
+                                    <option value="+359">(+359) Bulgaria</option>
+                                    <option value="+226">(+226) Burkina Faso</option>
+                                    <option value="+257">(+257) Burundi</option>
+                                    <option value="+855">(+855) Cambodia</option>
+                                    <option value="+237">(+237) Cameroon</option>
+                                    <option value="+1">(+1) Canada</option>
+                                    <option value="+238">(+238) Cape Verde</option>
+                                    <option value="+1">(+1) Cayman Islands</option>
+                                    <option value="+236">(+236) Central African Republic</option>
+                                    <option value="+235">(+235) Chad</option>
+                                    <option value="+56">(+56) Chile</option>
+                                    <option value="+86">(+86) China</option>
+                                    <option value="+57">(+57) Colombia</option>
+                                    <option value="+269">(+269) Comoros</option>
+                                    <option value="+242">(+242) Congo</option>
+                                    <option value="+243">(+243) Congo DR</option>
+                                    <option value="+682">(+682) Cook Islands</option>
+                                    <option value="+506">(+506) Costa Rica</option>
+                                    <option value="+225">(+225) Cote d'Ivoire</option>
+                                    <option value="+385">(+385) Croatia</option>
+                                    <option value="+53">(+53) Cuba</option>
+                                    <option value="+357">(+357) Cyprus</option>
+                                    <option value="+420">(+420) Czech Republic</option>
+                                    <option value="+45">(+45) Denmark</option>
+                                    <option value="+253">(+253) Djibouti</option>
+                                    <option value="+1">(+1) Dominica</option>
+                                    <option value="+1">(+1) Dominican Republic</option>
+                                    <option value="+593">(+593) Ecuador</option>
+                                    <option value="+20">(+20) Egypt</option>
+                                    <option value="+503">(+503) El Salvador</option>
+                                    <option value="+240">(+240) Equatorial Guinea</option>
+                                    <option value="+291">(+291) Eritrea</option>
+                                    <option value="+372">(+372) Estonia</option>
+                                    <option value="+268">(+268) Eswatini</option>
+                                    <option value="+251">(+251) Ethiopia</option>
+                                    <option value="+500">(+500) Falkland Islands</option>
+                                    <option value="+298">(+298) Faroe Islands</option>
+                                    <option value="+679">(+679) Fiji</option>
+                                    <option value="+358">(+358) Finland</option>
+                                    <option value="+33">(+33) France</option>
+                                    <option value="+594">(+594) French Guiana</option>
+                                    <option value="+689">(+689) French Polynesia</option>
+                                    <option value="+241">(+241) Gabon</option>
+                                    <option value="+220">(+220) Gambia</option>
+                                    <option value="+995">(+995) Georgia</option>
+                                    <option value="+49">(+49) Germany</option>
+                                    <option value="+233">(+233) Ghana</option>
+                                    <option value="+350">(+350) Gibraltar</option>
+                                    <option value="+30">(+30) Greece</option>
+                                    <option value="+299">(+299) Greenland</option>
+                                    <option value="+1">(+1) Grenada</option>
+                                    <option value="+590">(+590) Guadeloupe</option>
+                                    <option value="+1">(+1) Guam</option>
+                                    <option value="+502">(+502) Guatemala</option>
+                                    <option value="+44">(+44) Guernsey</option>
+                                    <option value="+224">(+224) Guinea</option>
+                                    <option value="+245">(+245) Guinea-Bissau</option>
+                                    <option value="+592">(+592) Guyana</option>
+                                    <option value="+509">(+509) Haiti</option>
+                                    <option value="+504">(+504) Honduras</option>
+                                    <option value="+852">(+852) Hong Kong</option>
+                                    <option value="+36">(+36) Hungary</option>
+                                    <option value="+354">(+354) Iceland</option>
+                                    <option value="+91">(+91) India</option>
+                                    <option value="+62">(+62) Indonesia</option>
+                                    <option value="+98">(+98) Iran</option>
+                                    <option value="+964">(+964) Iraq</option>
+                                    <option value="+353">(+353) Ireland</option>
+                                    <option value="+44">(+44) Isle of Man</option>
+                                    <option value="+972">(+972) Israel</option>
+                                    <option value="+39">(+39) Italy</option>
+                                    <option value="+1">(+1) Jamaica</option>
+                                    <option value="+81">(+81) Japan</option>
+                                    <option value="+44">(+44) Jersey</option>
+                                    <option value="+962">(+962) Jordan</option>
+                                    <option value="+7">(+7) Kazakhstan</option>
+                                    <option value="+254">(+254) Kenya</option>
+                                    <option value="+686">(+686) Kiribati</option>
+                                    <option value="+965">(+965) Kuwait</option>
+                                    <option value="+996">(+996) Kyrgyzstan</option>
+                                    <option value="+856">(+856) Laos</option>
+                                    <option value="+371">(+371) Latvia</option>
+                                    <option value="+961">(+961) Lebanon</option>
+                                    <option value="+266">(+266) Lesotho</option>
+                                    <option value="+231">(+231) Liberia</option>
+                                    <option value="+218">(+218) Libya</option>
+                                    <option value="+423">(+423) Liechtenstein</option>
+                                    <option value="+370">(+370) Lithuania</option>
+                                    <option value="+352">(+352) Luxembourg</option>
+                                    <option value="+853">(+853) Macau</option>
+                                    <option value="+261">(+261) Madagascar</option>
+                                    <option value="+265">(+265) Malawi</option>
+                                    <option value="+60">(+60) Malaysia</option>
+                                    <option value="+960">(+960) Maldives</option>
+                                    <option value="+223">(+223) Mali</option>
+                                    <option value="+356">(+356) Malta</option>
+                                    <option value="+692">(+692) Marshall Islands</option>
+                                    <option value="+596">(+596) Martinique</option>
+                                    <option value="+222">(+222) Mauritania</option>
+                                    <option value="+230">(+230) Mauritius</option>
+                                    <option value="+262">(+262) Mayotte</option>
+                                    <option value="+52">(+52) Mexico</option>
+                                    <option value="+691">(+691) Micronesia</option>
+                                    <option value="+373">(+373) Moldova</option>
+                                    <option value="+377">(+377) Monaco</option>
+                                    <option value="+976">(+976) Mongolia</option>
+                                    <option value="+382">(+382) Montenegro</option>
+                                    <option value="+1">(+1) Montserrat</option>
+                                    <option value="+258">(+258) Mozambique</option>
+                                    <option value="+95">(+95) Myanmar</option>
+                                    <option value="+264">(+264) Namibia</option>
+                                    <option value="+674">(+674) Nauru</option>
+                                    <option value="+977">(+977) Nepal</option>
+                                    <option value="+31">(+31) Netherlands</option>
+                                    <option value="+687">(+687) New Caledonia</option>
+                                    <option value="+64">(+64) New Zealand</option>
+                                    <option value="+505">(+505) Nicaragua</option>
+                                    <option value="+227">(+227) Niger</option>
+                                    <option value="+234">(+234) Nigeria</option>
+                                    <option value="+683">(+683) Niue</option>
+                                    <option value="+850">(+850) North Korea</option>
+                                    <option value="+389">(+389) North Macedonia</option>
+                                    <option value="+47">(+47) Norway</option>
+                                    <option value="+968">(+968) Oman</option>
+                                    <option value="+92">(+92) Pakistan</option>
+                                    <option value="+680">(+680) Palau</option>
+                                    <option value="+970">(+970) Palestine</option>
+                                    <option value="+507">(+507) Panama</option>
+                                    <option value="+675">(+675) Papua New Guinea</option>
+                                    <option value="+595">(+595) Paraguay</option>
+                                    <option value="+51">(+51) Peru</option>
+                                    <option value="+63">(+63) Philippines</option>
+                                    <option value="+48">(+48) Poland</option>
+                                    <option value="+351">(+351) Portugal</option>
+                                    <option value="+1">(+1) Puerto Rico</option>
+                                    <option value="+974">(+974) Qatar</option>
+                                    <option value="+262">(+262) Reunion</option>
+                                    <option value="+40">(+40) Romania</option>
+                                    <option value="+7">(+7) Russia</option>
+                                    <option value="+250">(+250) Rwanda</option>
+                                    <option value="+590">(+590) Saint Barthelemy</option>
+                                    <option value="+290">(+290) Saint Helena</option>
+                                    <option value="+1">(+1) Saint Kitts and Nevis</option>
+                                    <option value="+1">(+1) Saint Lucia</option>
+                                    <option value="+590">(+590) Saint Martin</option>
+                                    <option value="+508">(+508) Saint Pierre and Miquelon</option>
+                                    <option value="+1">(+1) Saint Vincent and the Grenadines</option>
+                                    <option value="+685">(+685) Samoa</option>
+                                    <option value="+378">(+378) San Marino</option>
+                                    <option value="+239">(+239) Sao Tome and Principe</option>
+                                    <option value="+966">(+966) Saudi Arabia</option>
+                                    <option value="+221">(+221) Senegal</option>
+                                    <option value="+381">(+381) Serbia</option>
+                                    <option value="+248">(+248) Seychelles</option>
+                                    <option value="+232">(+232) Sierra Leone</option>
+                                    <option value="+65">(+65) Singapore</option>
+                                    <option value="+421">(+421) Slovakia</option>
+                                    <option value="+386">(+386) Slovenia</option>
+                                    <option value="+677">(+677) Solomon Islands</option>
+                                    <option value="+252">(+252) Somalia</option>
+                                    <option value="+27">(+27) South Africa</option>
+                                    <option value="+82">(+82) South Korea</option>
+                                    <option value="+211">(+211) South Sudan</option>
+                                    <option value="+34">(+34) Spain</option>
+                                    <option value="+94">(+94) Sri Lanka</option>
+                                    <option value="+249">(+249) Sudan</option>
+                                    <option value="+597">(+597) Suriname</option>
+                                    <option value="+46">(+46) Sweden</option>
+                                    <option value="+41">(+41) Switzerland</option>
+                                    <option value="+963">(+963) Syria</option>
+                                    <option value="+886">(+886) Taiwan</option>
+                                    <option value="+992">(+992) Tajikistan</option>
+                                    <option value="+255">(+255) Tanzania</option>
+                                    <option value="+66">(+66) Thailand</option>
+                                    <option value="+670">(+670) Timor-Leste</option>
+                                    <option value="+228">(+228) Togo</option>
+                                    <option value="+690">(+690) Tokelau</option>
+                                    <option value="+676">(+676) Tonga</option>
+                                    <option value="+1">(+1) Trinidad and Tobago</option>
+                                    <option value="+216">(+216) Tunisia</option>
+                                    <option value="+90">(+90) Turkey</option>
+                                    <option value="+993">(+993) Turkmenistan</option>
+                                    <option value="+1">(+1) Turks and Caicos Islands</option>
+                                    <option value="+688">(+688) Tuvalu</option>
+                                    <option value="+256">(+256) Uganda</option>
+                                    <option value="+380">(+380) Ukraine</option>
+                                    <option value="+971">(+971) United Arab Emirates</option>
+                                    <option value="+44">(+44) United Kingdom</option>
+                                    <option value="+1">(+1) United States</option>
+                                    <option value="+598">(+598) Uruguay</option>
+                                    <option value="+998">(+998) Uzbekistan</option>
+                                    <option value="+678">(+678) Vanuatu</option>
+                                    <option value="+379">(+379) Vatican City</option>
+                                    <option value="+58">(+58) Venezuela</option>
+                                    <option value="+84">(+84) Vietnam</option>
+                                    <option value="+1">(+1) Virgin Islands</option>
+                                    <option value="+681">(+681) Wallis and Futuna</option>
+                                    <option value="+967">(+967) Yemen</option>
+                                    <option value="+260">(+260) Zambia</option>
+                                    <option value="+263">(+263) Zimbabwe</option>
+                                </select>
+                                <input type="tel" name="whatsapp" placeholder="6 30 08 09 37" data-lead-field="whatsapp">
+                            </div>
+                            <small>Crucial for hotel pickup coordination</small>
+                        </label>
+                        <div class="pickup-choice is-wide">
+                            <h3>Pickup point</h3>
+                            <p>Tell us where you'd like to be picked up from. If you're not sure, you can decide later.</p>
+                            <label class="pickup-option">
+                                <input type="radio" name="pickupChoice" value="I'd like to be picked up" data-pickup-choice>
+                                <span>I'd like to be picked up</span>
+                            </label>
+                            <div class="pickup-location" data-pickup-location>
+                                <label>
+                                    <input type="text" placeholder="Search location" data-lead-field="pickupLocation">
+                                    <b>&#9906;</b>
+                                </label>
+                                <div class="pickup-place-list" data-pickup-place-list>
+                                    <button type="button" data-pickup-place="Agadir Beach, Boulevard du 20 Aout, Agadir 80000 Morocco">
+                                        <i data-place-icon="beach"></i>
+                                        <span><strong>Agadir Beach</strong><small>Boulevard du 20 Aout, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Agadir Marina, Route Marina, Agadir 80000 Morocco">
+                                        <i data-place-icon="port"></i>
+                                        <span><strong>Agadir Marina</strong><small>Route Marina, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Allegro Agadir, Boulevard du 20 Aout, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Allegro Agadir</strong><small>Boulevard du 20 Aout, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Aloha Surf Camp Maroc, Tamraght 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Aloha Surf Camp Maroc</strong><small>Tamraght 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Amouage by Surf Maroc, Taghazout 80022 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Amouage by Surf Maroc</strong><small>Taghazout 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Anezi Tower Hotel, Boulevard Mohamed V, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Anezi Tower Hotel</strong><small>Boulevard Mohamed V, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="ANP Port Agadir, C9H7+J27, Agadir 80000, Morocco">
+                                        <i data-place-icon="port"></i>
+                                        <span><strong>ANP Port Agadir</strong><small>C9H7+J27, Agadir 80000, Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Atlantic Palace Agadir Golf Thalasso & Casino Resort, Secteur Balneaire, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Atlantic Palace Agadir</strong><small>Secteur Balneaire, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Atlantica Parc Beach, Imi Ouaddar, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Atlantica Parc Beach</strong><small>Imi Ouaddar, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Atlantica Parc Lodge, Km 27 Route d'Essaouira, Imi Ouaddar 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Atlantica Parc Lodge</strong><small>Km 27 Route d'Essaouira, Imi Ouaddar 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Atlas Amadil Beach Hotel, Chemin des Dunes, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Atlas Amadil Beach Hotel</strong><small>Chemin des Dunes, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Banana Beach House, Aourir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Banana Beach House</strong><small>Aourir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Blue Waves Surf House, Anza / Aourir, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Blue Waves Surf House</strong><small>Anza / Aourir, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Cli Surf House Morocco, Tamraght Ouzdar 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Cli Surf House Morocco</strong><small>Tamraght Ouzdar 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Dar Surf, Taghazout 80022 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Dar Surf</strong><small>Taghazout 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="DFrost Almugar Surf House, Tamraght Ouzdar 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>DFrost Almugar Surf House</strong><small>Tamraght Ouzdar 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Diman Surf Hostel, Tamraght Ouzdar 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Diman Surf Hostel</strong><small>Tamraght Ouzdar 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Dunes d'Or Ocean Club, Secteur Balneaire, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Dunes d'Or Ocean Club</strong><small>Secteur Balneaire, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Fairmont Taghazout Bay, Km 17 Route d'Essaouira, Taghazout Bay 80750 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Fairmont Taghazout Bay</strong><small>Km 17 Route d'Essaouira, Taghazout Bay 80750 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hilton Taghazout Bay Beach Resort & Spa, Km 17 Route d'Essaouira Station Touristique de Taghazout Bay, Taghazout 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hilton Taghazout Bay Beach Resort & Spa</strong><small>Km 17 Route d'Essaouira Station Touristique de Taghazout Bay, Taghazout 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hostel Atlantic View Tamraght, Tamraght Ouzdar 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hostel Atlantic View Tamraght</strong><small>Tamraght Ouzdar 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Argana Agadir, Boulevard Mohamed V, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Argana Agadir</strong><small>Boulevard Mohamed V, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Hamilton Agadir, Boulevard Mohamed V, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Hamilton Agadir</strong><small>Boulevard Mohamed V, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Inou, Aourir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Inou</strong><small>Aourir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Kamal City Center, Avenue Hassan II, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Kamal City Center</strong><small>Avenue Hassan II, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Odyssee Park, Boulevard Mohamed V, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Odyssee Park</strong><small>Boulevard Mohamed V, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Riu Palace Tikida Taghazout, Taghazout Bay, Taghazout 80022 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Riu Palace Tikida Taghazout</strong><small>Taghazout Bay, Taghazout 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Riu Tikida Beach, Chemin des Dunes, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Riu Tikida Beach</strong><small>Chemin des Dunes, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hotel Riu Tikida Dunas, Chemin des Dunes, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hotel Riu Tikida Dunas</strong><small>Chemin des Dunes, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hyatt Place Taghazout Bay, Station Touristique de Taghazout, Taghazout 80750 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hyatt Place Taghazout Bay</strong><small>Station Touristique de Taghazout, Taghazout 80750 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Hyatt Regency Taghazout, Route d'Essaouira BP 294 Station Touristique De Taghazout Bay Km 17, Taghazout 80750 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Hyatt Regency Taghazout</strong><small>Route d'Essaouira BP 294 Station Touristique De Taghazout Bay Km 17, Taghazout 80750 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Iberostar Waves Founty Beach, Cite Founty, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Iberostar Waves Founty Beach</strong><small>Cite Founty, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Kenzi Europa Hotel, Boulevard du 20 Aout, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Kenzi Europa Hotel</strong><small>Boulevard du 20 Aout, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Les Terrasses d'Aourir, Aourir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Les Terrasses d'Aourir</strong><small>Aourir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Lunja Village Taghazout, Km 30 Route d'Essaouira, Imi Ouaddar 80750 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Lunja Village Taghazout</strong><small>Km 30 Route d'Essaouira, Imi Ouaddar 80750 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Mabrouk Hotel & Suites, Boulevard du 20 Aout, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Mabrouk Hotel & Suites</strong><small>Boulevard du 20 Aout, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Munga Guesthouse, Taghazout 80022 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Munga Guesthouse</strong><small>Taghazout 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Oasis Hotel & Spa, Rue Granada, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Oasis Hotel & Spa</strong><small>Rue Granada, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Original Surf Morocco, Tamraght 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Original Surf Morocco</strong><small>Tamraght 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Paradis Plage Surf Yoga & Spa Resort, Km 26 Route d'Essaouira, Imi Ouaddar 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Paradis Plage Surf Yoga & Spa Resort</strong><small>Km 26 Route d'Essaouira, Imi Ouaddar 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Pickalbatros White Beach Taghazout, Tamraght, Agadir 80750 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Pickalbatros White Beach Taghazout</strong><small>Tamraght, Agadir 80750 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Radisson Blu Resort Taghazout Bay Surf Village, Taghazout Bay 80750 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Radisson Blu Resort Taghazout Bay Surf Village</strong><small>Taghazout Bay 80750 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Residence Hoteliere Fleurie, Rue de la Foire, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Residence Hoteliere Fleurie</strong><small>Rue de la Foire, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Riad Dar Haven, Hay Ait Soual, Aourir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Riad Dar Haven</strong><small>Hay Ait Soual, Aourir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Robinson Agadir, Chemin des Dunes, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Robinson Agadir</strong><small>Chemin des Dunes, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Royal Atlas & Spa, Boulevard du 20 Aout, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Royal Atlas & Spa</strong><small>Boulevard du 20 Aout, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Senator Agadir Hotel, Avenue Abderrahim Bouabid, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Senator Agadir Hotel</strong><small>Avenue Abderrahim Bouabid, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Sofitel Agadir Royal Bay Resort, Cite Founty P4, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Sofitel Agadir Royal Bay Resort</strong><small>Cite Founty P4, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Sofitel Agadir Thalassa Sea & Spa, Baie des Palmiers, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Sofitel Agadir Thalassa Sea & Spa</strong><small>Baie des Palmiers, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Sol House Taghazout Bay Surf, Taghazout Bay 80022 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Sol House Taghazout Bay Surf</strong><small>Taghazout Bay 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Sunset Surfhouse Morocco, Tamraght 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Sunset Surfhouse Morocco</strong><small>Tamraght 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Surf Berbere, Taghazout 80022 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Surf Berbere</strong><small>Taghazout 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Surf Therapy Morocco, Tamraght 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Surf Therapy Morocco</strong><small>Tamraght 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Taghazout Center, Taghazout 80022 Morocco">
+                                        <i data-place-icon="center"></i>
+                                        <span><strong>Taghazout Center</strong><small>Taghazout 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Tamraght Center, Tamraght, Agadir 80023 Morocco">
+                                        <i data-place-icon="center"></i>
+                                        <span><strong>Tamraght Center</strong><small>Tamraght, Agadir 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="The Lunar Surf House, Tamraght 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>The Lunar Surf House</strong><small>Tamraght 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Tildi Hotel & Spa, Rue Hubert Giraud, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Tildi Hotel & Spa</strong><small>Rue Hubert Giraud, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Timoulay Hotel & Spa Agadir, Cite Founty F6, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Timoulay Hotel & Spa Agadir</strong><small>Cite Founty F6, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Valeria Jardins d'Agadir Resort, Rue Oued Souss, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Valeria Jardins d'Agadir Resort</strong><small>Rue Oued Souss, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="World of Waves, Taghazout 80022 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>World of Waves</strong><small>Taghazout 80022 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Yogi Surfer, Tamraght 80023 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Yogi Surfer</strong><small>Tamraght 80023 Morocco</small></span>
+                                    </button>
+                                    <button type="button" data-pickup-place="Zephyr Agadir, Founty, Agadir 80000 Morocco">
+                                        <i data-place-icon="hotel"></i>
+                                        <span><strong>Zephyr Agadir</strong><small>Founty, Agadir 80000 Morocco</small></span>
+                                    </button>
+                                </div>
+                                <small data-pickup-required>Required</small>
+                            </div>
+                            <label class="pickup-option">
+                                <input type="radio" name="pickupChoice" value="I'll decide later" data-pickup-choice>
+                                <span>I'll decide later <small>No problem - you can send us your pickup details later on WhatsApp.</small></span>
+                            </label>
+                        </div>
+                        <label class="is-wide">
+                            <span>Special requests / custom notes (optional)</span>
+                            <textarea name="notes" rows="5" placeholder="Provide hotel name for booking pickup, dietary requests, or custom group setup..." data-lead-field="notes"></textarea>
+                        </label>
+                    </div>
+
+                    <div class="secure-note">
+                        <strong>Secure, trustworthy reservation</strong>
+                        <p>We never ask for credit cards during checkout. You coordinate directly on secure parameters and settle securely with the concierge during hotel handovers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-success-card" data-booking-success>
+                <div class="success-mark">&#10003;</div>
+                <h2>Booking Request Received!</h2>
+                <p class="success-subtitle">No payment today - final confirmation is on the way</p>
+
+                <div class="success-summary">
+                    <h3>Booking Summary</h3>
+                    <div><span>Activity:</span><strong>Agadir: Sandboarding Guided Experience & Visit to the Canyon</strong></div>
+                    <div><span>Date & Time:</span><strong data-success-date>May 15, 2026 @ 09:00 AM</strong></div>
+                    <div><span>Option Type:</span><strong data-success-option>Shared Tour</strong></div>
+                    <div><span>Travelers:</span><strong data-success-travelers>2 travelers</strong></div>
+                    <div class="success-total"><span>Total Trip Price:</span><strong data-success-total>&euro;18</strong></div>
+                </div>
+
+                <p class="success-note">Our <strong>Go Agadir Travel Expert Concierge</strong> has received your itinerary availability request. We will contact you via WhatsApp within 1-2 hours to finalize details and secure guides.</p>
+
+                <a href="product.html">Back to experience</a>
+            </div>
+
+            <aside class="checkout-summary-card">
+                <p class="checkout-kicker">Selected experience</p>
+                <h2>Agadir: Sandboarding Guided Experience & Visit to the Canyon</h2>
+                <span class="summary-category">City tours</span>
+
+                <div class="summary-lines">
+                    <div><span>Selected Date:</span><strong data-summary-date>Jan 9, 2026</strong></div>
+                    <div><span>Travelers:</span><strong data-summary-travelers>2 pax</strong></div>
+                    <div><span>Preferred Time:</span><strong data-summary-time>09:00 AM</strong></div>
+                    <div><span>Category Setting:</span><strong data-summary-category>Shared Tour</strong></div>
+                    <div class="is-hidden" data-summary-addon-row><span>Add-on:</span><strong data-summary-addon>None</strong></div>
+                </div>
+
+                <div class="summary-price-line">
+                    <span>Core ticket sum:</span>
+                    <strong data-summary-core>&euro;18</strong>
+                </div>
+
+                <div class="summary-total">
+                    <span>Estimated<br>Total:</span>
+                    <div>
+                        <strong data-summary-total>&euro;18</strong>
+                        <small>All taxes & concierges included</small>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <div class="checkout-actions">
+            <button type="button" class="checkout-secondary" data-previous-step>Go back</button>
+            <button type="button" data-next-step>Continue &#8250;</button>
+        </div>
+    </main>
+    <script src="script.js?v=checkout-hide-summary-step1-1"></script>
+</body>
+</html>

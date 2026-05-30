@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go Agadir Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=mobile-footer-1">
+</head>
+<body class="home-body">
+  <header class="home-nav">
+    <a class="home-logo" href="index.html">Go Agadir Travel</a>
+
+    <nav class="home-menu" aria-label="Main navigation">
+      <a href="#tours">Tours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="home-whatsapp" href="https://wa.me/212630080937?text=Hello%20Go%20Agadir%20Travel%2C%20I%20want%20to%20book%20a%20tour">Book on WhatsApp</a>
+    <button class="home-menu-toggle" type="button" aria-label="Open menu" aria-controls="home-mobile-menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <aside class="home-mobile-menu" id="home-mobile-menu" aria-hidden="true">
+    <button class="home-menu-close" type="button" aria-label="Close menu">&times;</button>
+    <nav aria-label="Mobile navigation">
+      <a href="#tours">Tours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/212630080937?text=Hello%20Go%20Agadir%20Travel%2C%20I%20want%20to%20book%20a%20tour">Book on WhatsApp</a>
+    </nav>
+    <p>&copy; 2026 Go Agadir Travel - Local Experts</p>
+  </aside>
+
+  <main>
+    <section class="home-hero">
+      <div class="home-hero-media" aria-hidden="true">
+        <img src="images/home-hero-camel.jpg?v=img8008" alt="">
+      </div>
+
+      <div class="home-hero-content">
+        <p class="home-kicker">Agadir local experiences</p>
+        <h1>Book unforgettable tours around Agadir</h1>
+        <p class="home-hero-text">
+          Compare top-rated desert, beach, mountain, quad, camel, and sunset activities with trusted local guides.
+        </p>
+
+        <form class="home-search" action="#tours">
+          <label>
+            <span>Where</span>
+            <input type="text" value="Agadir" aria-label="Destination">
+          </label>
+          <label>
+            <span>Experience</span>
+            <select aria-label="Experience type">
+              <option>All activities</option>
+              <option>Desert tours</option>
+              <option>Paradise Valley</option>
+              <option>Quad biking</option>
+            </select>
+          </label>
+          <label>
+            <span>When</span>
+            <select aria-label="Tour date">
+              <option>Today or tomorrow</option>
+              <option>This week</option>
+              <option>Choose date later</option>
+            </select>
+          </label>
+          <button type="submit">Search tours</button>
+        </form>
+
+        <div class="home-trust-row">
+          <span>Free cancellation</span>
+          <span>Pay on pickup</span>
+          <span>4.9 average rating</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-stats" aria-label="Booking benefits">
+      <article>
+        <strong>500+</strong>
+        <span>happy travelers</span>
+      </article>
+      <article>
+        <strong>24/7</strong>
+        <span>local support</span>
+      </article>
+      <article>
+        <strong>30+</strong>
+        <span>curated activities</span>
+      </article>
+      <article>
+        <strong>100%</strong>
+        <span>local guides</span>
+      </article>
+    </section>
+
+    <section class="home-categories" id="why">
+      <div class="section-heading">
+        <p>Explore by style</p>
+        <h2>Choose the Agadir experience that fits your day</h2>
+      </div>
+
+      <div class="category-grid">
+        <article data-style-filter="desert" role="button" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=700&auto=format&fit=crop" alt="Desert dunes">
+          <span>Desert</span>
+        </article>
+        <article data-style-filter="beach" role="button" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=700&auto=format&fit=crop" alt="Ocean beach">
+          <span>Beach</span>
+        </article>
+        <article data-style-filter="nature" role="button" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=700&auto=format&fit=crop" alt="Mountain valley">
+          <span>Nature</span>
+        </article>
+        <article data-style-filter="sunset" role="button" tabindex="0">
+          <img src="https://media.istockphoto.com/id/1172427455/fr/photo/beau-coucher-du-soleil-au-dessus-de-la-mer-tropicale.jpg?s=612x612&w=0&k=20&c=-2oYnukNSjcGS_o_H_pL1YoK9EB5pwtPQLcudUhUuQc=" alt="Sunset over the ocean">
+          <span>Sunset</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-tours" id="tours">
+      <div class="section-heading wide-heading">
+        <div>
+          <p>Top booked tours</p>
+          <h2>Best things to do in Agadir</h2>
+        </div>
+        <div class="tour-tabs" aria-label="Tour filters">
+          <button type="button" data-style-filter="all">All tours</button>
+          <button type="button" data-style-filter="desert">Desert</button>
+          <button type="button" data-style-filter="sunset">Sunset</button>
+          <button type="button" data-style-filter="nature">Nature</button>
+        </div>
+      </div>
+
+      <div class="home-tour-grid">
+        <article class="home-tour-card featured-tour" data-tour-category="desert beach sunset">
+          <a class="tour-image" href="product.html">
+            <img src="images/sandboarding-card.jpg" alt="Woman sandboarding on desert dunes">
+            <span>Top rated</span>
+          </a>
+          <div class="tour-card-body">
+            <p class="tour-meta">6 hours - Pickup included</p>
+            <h3>Agadir/Taghazout: Sunset Sandboarding, Quad Bike & Moroccan Dinner</h3>
+            <div class="tour-rating">
+              <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <strong>5.0</strong>
+              <small>127 reviews</small>
+            </div>
+            <div class="tour-perks">
+              <span>Private transport</span>
+              <span>Licensed local guide</span>
+            </div>
+            <div class="tour-footer">
+              <div>
+                <span>From</span>
+                <strong>&euro;18</strong>
+              </div>
+              <a href="product.html">Check availability</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="home-tour-card" data-tour-category="desert beach nature sunset">
+          <a class="tour-image" href="product-quad.html">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop" alt="Quad bike adventure near Agadir">
+            <span>Best seller</span>
+          </a>
+          <div class="tour-card-body">
+            <p class="tour-meta">Half day - Beach & mountains</p>
+            <h3>Agadir Quad Bike Adventure: Beach, Mountains & Tea Break</h3>
+            <div class="tour-rating">
+              <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <strong>4.9</strong>
+              <small>94 reviews</small>
+            </div>
+            <div class="tour-perks">
+              <span>Private transport</span>
+              <span>Licensed local guide</span>
+            </div>
+            <div class="tour-footer">
+              <div>
+                <span>From</span>
+                <strong>&euro;25</strong>
+              </div>
+              <a href="product-quad.html">Check availability</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="home-tour-card" data-tour-category="nature">
+          <a class="tour-image" href="product-paradise.html">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop" alt="Agadir beach">
+            <span>Popular</span>
+          </a>
+          <div class="tour-card-body">
+            <p class="tour-meta">Half day - Breakfast & lunch</p>
+            <h3>Paradise Valley & Atlas Mountains Escape with Breakfast and Lunch</h3>
+            <div class="tour-rating">
+              <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <strong>4.8</strong>
+              <small>81 reviews</small>
+            </div>
+            <div class="tour-perks">
+              <span>Private transport</span>
+              <span>Licensed local guide</span>
+            </div>
+            <div class="tour-footer">
+              <div>
+                <span>From</span>
+                <strong>&euro;35</strong>
+              </div>
+              <a href="product-paradise.html">Check availability</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-how">
+      <div class="section-heading">
+        <p>Simple booking</p>
+        <h2>Book like a marketplace, travel like a local</h2>
+      </div>
+
+      <div class="how-grid">
+        <article>
+          <span>1</span>
+          <h3>Choose your activity</h3>
+          <p>Compare duration, pickup, reviews, and price before you decide.</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>Confirm on WhatsApp</h3>
+          <p>Ask questions, confirm pickup, and keep your booking flexible.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Enjoy Agadir</h3>
+          <p>Your local guide handles the route, timing, and best photo stops.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-reviews" id="reviews">
+      <div class="review-panel">
+        <div>
+          <p>Guest rating</p>
+          <h2>Travelers trust Go Agadir Travel</h2>
+          <div class="review-score">
+            <strong>4.9</strong>
+            <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <small>Based on recent Google reviews</small>
+          </div>
+        </div>
+
+        <div class="review-quotes google-home-reviews">
+          <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+          <script src="https://elfsightcdn.com/platform.js" async></script>
+          <div class="elfsight-app-3c9379ef-d7b4-4ec3-825a-a1e11aed2ac9" data-elfsight-app-lazy></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="home-footer" id="contact">
+    <div class="footer-cta-card">
+      <div>
+        <p>Ready when you are</p>
+        <h2>Plan your Agadir day with a local expert</h2>
+      </div>
+      <a href="https://wa.me/212630080937?text=Hello%20Go%20Agadir%20Travel%2C%20I%20want%20to%20plan%20my%20Agadir%20tour">Start on WhatsApp</a>
+    </div>
+
+    <div class="footer-feature-bar">
+      <span>Book now, pay later</span>
+      <span>Free cancellation</span>
+      <span>24/7 local support</span>
+      <span>Licensed guides</span>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-brand">
+        <h2><span>●</span> Go Agadir Travel</h2>
+        <p class="footer-label">Agadir travel agency</p>
+        <p>
+          Go Agadir Travel is your local guide for authentic Agadir experiences.
+          Explore beaches, Anti-Atlas mountains, desert, and beyond with our local experts.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Quick links</h3>
+        <a href="#">Home</a>
+        <a href="#tours">Tours</a>
+        <a href="#why">Why us</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Popular activities</h3>
+        <a href="product.html">Agadir beach tour</a>
+        <a href="product.html">Paradise Valley day trip</a>
+        <a href="product.html">Private transfers</a>
+        <a href="product.html">Sahara desert tours</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h3>Contact Go Agadir</h3>
+        <p>Agadir 80000, Morocco</p>
+        <p>+212 630 080 937</p>
+        <p>contact@goagadirtravel.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom-line">
+      <span>© 2026 Go Agadir Travel. All rights reserved.</span>
+      <a href="#">Admin Portal</a>
+    </div>
+  </footer>
+
+  <a class="back-to-top" href="#" aria-label="Back to top">↑</a>
+  <script src="script.js?v=tour-card-click-1"></script>
+</body>
+</html>

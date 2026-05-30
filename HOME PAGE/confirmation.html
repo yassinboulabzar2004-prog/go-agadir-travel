@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Request Received | Go Agadir Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="checkout-body confirmation-body">
+    <main class="checkout-page confirmation-page">
+        <section class="booking-success-card confirmation-card">
+            <div class="success-mark">&#10003;</div>
+            <h1>Booking Request Received!</h1>
+            <p class="success-subtitle">No payment today - final confirmation is on the way</p>
+
+            <div class="success-summary">
+                <h3>Booking Summary</h3>
+                <div><span>Booking ID:</span><strong data-confirm-id>GAT</strong></div>
+                <div><span>Activity:</span><strong data-confirm-activity>Agadir: Sandboarding Guided Experience & Visit to the Canyon</strong></div>
+                <div><span>Date & Time:</span><strong data-confirm-date>Selected date @ selected time</strong></div>
+                <div><span>Option Type:</span><strong data-confirm-option>Shared Tour</strong></div>
+                <div><span>Travelers:</span><strong data-confirm-travelers>1 pax</strong></div>
+                <div><span>Add-ons:</span><strong data-confirm-addons>None</strong></div>
+                <div class="success-total"><span>Total Trip Price:</span><strong data-confirm-total>&euro;18</strong></div>
+            </div>
+
+            <p class="success-note">Our <strong>Go Agadir Travel Expert Concierge</strong> has received your itinerary availability request. We sent a confirmation email and will contact you via WhatsApp within 1-2 hours.</p>
+
+            <a href="product.html">Back to experience</a>
+        </section>
+    </main>
+
+    <script>
+        const storedBooking = sessionStorage.getItem('lastBookingRequest');
+
+        if (storedBooking) {
+            const data = JSON.parse(storedBooking);
+            const booking = data.booking || {};
+            const addons = booking.addons || [];
+            const setText = (selector, value) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.textContent = value || 'None';
+                }
+            };
+
+            setText('[data-confirm-id]', data.bookingId);
+            setText('[data-confirm-activity]', booking.activity);
+            setText('[data-confirm-date]', `${booking.date || ''} @ ${booking.time || ''}`);
+            setText('[data-confirm-option]', booking.option);
+            setText('[data-confirm-travelers]', booking.travelers);
+            setText('[data-confirm-addons]', addons.length
+                ? addons.map((addon) => `${addon.name} x ${addon.pax}`).join(', ')
+                : 'None');
+            setText('[data-confirm-total]', booking.totalText || `€${booking.totalPrice || 0}`);
+        }
+    </script>
+</body>
+</html>
