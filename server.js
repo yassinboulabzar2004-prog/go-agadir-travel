@@ -235,7 +235,7 @@ app.post('/send-booking', async (req, res) => {
 
     return res.json({ ok: true, bookingId });
   } catch (error) {
-    console.error('Booking email failed:', error);
+    console.error('Booking email failed via Resend:', error);
     return res.status(500).json({
       ok: false,
       message: 'Could not send booking email. Please try again.'
