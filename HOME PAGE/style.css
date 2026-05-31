@@ -5680,7 +5680,7 @@ body.is-gallery-open{
 }
 
 .addon-card.is-added .addon-guests{
-    display:grid;
+    display:none;
     grid-template-columns:1fr 1fr;
     gap:10px;
 }

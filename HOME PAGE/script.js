@@ -390,6 +390,13 @@
             const childMatch = guestText.match(/Child x (\d+)/);
             const adults = adultMatch ? Number(adultMatch[1]) : 1;
             const children = childMatch ? Number(childMatch[1]) : 0;
+            const pageTitle = document.querySelector('.product-mobile-title h1, .product-title-row h1')?.textContent.replace(/\s+/g, ' ').trim();
+            const priceText = bookingBox?.querySelector('.price-box strong')?.textContent || '';
+            const visiblePrice = Number(priceText.replace(/[^\d.]/g, '')) || 18;
+            const activityTitle = button.dataset.activityTitle || pageTitle || 'Agadir/Taghazout: Sunset Sandboarding, Quad Bike & Moroccan Dinner';
+            const sharedPrice = Number(button.dataset.sharedPrice) || visiblePrice;
+            const privatePrice = Number(button.dataset.privatePrice) || 90;
+            const checkoutUrl = new URL(button.getAttribute('href'), window.location.href);
 
             if (!picker || !summary) {
                 return;
@@ -404,7 +411,14 @@
             }
 
             event.preventDefault();
-            window.location.href = `${button.getAttribute('href')}?date=${encodeURIComponent(selectedDate)}&adults=${adults}&children=${children}`;
+            checkoutUrl.searchParams.set('date', selectedDate);
+            checkoutUrl.searchParams.set('adults', String(adults));
+            checkoutUrl.searchParams.set('children', String(children));
+            checkoutUrl.searchParams.set('activity', activityTitle);
+            checkoutUrl.searchParams.set('sharedPrice', String(sharedPrice));
+            checkoutUrl.searchParams.set('privatePrice', String(privatePrice));
+            checkoutUrl.searchParams.set('source', window.location.pathname.split('/').pop() || 'product.html');
+            window.location.href = checkoutUrl.href;
         });
     });
 
@@ -482,6 +496,11 @@
         const today = new Date(2026, 4, 26);
         const requestedDate = new URLSearchParams(window.location.search).get('date');
         const params = new URLSearchParams(window.location.search);
+        const defaultActivityTitle = 'Agadir/Taghazout: Sunset Sandboarding, Quad Bike & Moroccan Dinner';
+        const checkoutActivityTitle = params.get('activity') || defaultActivityTitle;
+        const checkoutSourcePage = params.get('source') || 'product.html';
+        const checkoutSharedPrice = Math.max(1, Number(params.get('sharedPrice')) || 18);
+        const checkoutPrivatePrice = Math.max(1, Number(params.get('privatePrice')) || 90);
         const checkoutAdults = Math.max(1, Number(params.get('adults')) || 1);
         const checkoutChildren = Math.max(0, Number(params.get('children')) || 0);
         const checkoutPax = checkoutAdults + checkoutChildren;
@@ -489,7 +508,7 @@
         let selectedDate = parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate : new Date(2026, 0, 9);
         let visibleMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
         let checkoutStep = 1;
-        let corePrice = 18 * checkoutPax;
+        let corePrice = checkoutSharedPrice * checkoutPax;
         let addonPrice = 0;
 
         const monthNames = [
@@ -501,13 +520,37 @@
         const formatShortDate = (date) => `${monthNames[date.getMonth()].slice(0, 3)} ${date.getDate()}, ${date.getFullYear()}`;
         const formatCheckoutPrice = (price) => `€${price}`;
 
+        const syncCheckoutProduct = () => {
+            const summaryTitle = document.querySelector('.checkout-summary-card h2');
+            const sharedOption = document.querySelector('[data-tour-option="Shared Tour"]');
+            const privateOption = document.querySelector('[data-tour-option="Private Tour"]');
+
+            if (summaryTitle) {
+                summaryTitle.textContent = checkoutActivityTitle;
+            }
+
+            if (sharedOption) {
+                sharedOption.dataset.price = String(checkoutSharedPrice);
+                const sharedPriceLabel = sharedOption.querySelector('strong');
+                if (sharedPriceLabel) {
+                    sharedPriceLabel.innerHTML = `${formatCheckoutPrice(checkoutSharedPrice)} <small>/ traveler</small>`;
+                }
+            }
+
+            if (privateOption) {
+                privateOption.dataset.price = String(checkoutPrivatePrice);
+                const privatePriceLabel = privateOption.querySelector('strong');
+                if (privatePriceLabel) {
+                    privatePriceLabel.innerHTML = `${formatCheckoutPrice(checkoutPrivatePrice)} <small>/ total up to 6</small>`;
+                }
+            }
+        };
+
         const syncCheckoutTotal = () => {
             const selectedAddons = Array.from(addonCards).filter((card) => card.classList.contains('is-added'));
             addonPrice = selectedAddons.reduce((total, card) => {
                 const unitPrice = Number(card.dataset.addonPrice) || 0;
-                const adultCount = Number(card.dataset.addonAdult || 1);
-                const childCount = Number(card.dataset.addonChild || 0);
-                return total + (unitPrice * (adultCount + childCount));
+                return total + (unitPrice * checkoutPax);
             }, 0);
 
             if (summaryCore) {
@@ -529,8 +572,7 @@
             if (summaryAddon) {
                 summaryAddon.textContent = selectedAddons.length > 0
                     ? selectedAddons.map((card) => {
-                        const count = (Number(card.dataset.addonAdult || 1) + Number(card.dataset.addonChild || 0));
-                        return `${card.dataset.addonName} x ${count}`;
+                        return `${card.dataset.addonName} x ${checkoutPax}`;
                     }).join(', ')
                     : 'None';
             }
@@ -693,7 +735,7 @@
                 option.classList.add('is-selected');
                 summaryCategory.textContent = option.dataset.tourOption;
                 corePrice = option.dataset.tourOption === 'Shared Tour'
-                    ? 18 * checkoutPax
+                    ? checkoutSharedPrice * checkoutPax
                     : Number(option.dataset.price) || 0;
                 if (summaryCore) {
                     summaryCore.textContent = formatCheckoutPrice(corePrice);
@@ -741,24 +783,21 @@
                     const selectedAddonData = Array.from(addonCards)
                         .filter((card) => card.classList.contains('is-added'))
                         .map((card) => {
-                            const adult = Number(card.dataset.addonAdult || 1);
-                            const child = Number(card.dataset.addonChild || 0);
-                            const pax = adult + child;
                             const unitPrice = Number(card.dataset.addonPrice || 0);
 
                             return {
                                 name: card.dataset.addonName,
-                                adult,
-                                child,
-                                pax,
+                                adult: checkoutAdults,
+                                child: checkoutChildren,
+                                pax: checkoutPax,
                                 unitPrice,
-                                total: unitPrice * pax
+                                total: unitPrice * checkoutPax
                             };
                         });
 
                     const whatsappCountrySelect = document.querySelector('[data-lead-field="whatsappCountry"]');
                     const activityTitle = document.querySelector('.checkout-summary-card h2')?.textContent.trim()
-                        || 'Agadir: Sandboarding Guided Experience & Visit to the Canyon';
+                        || checkoutActivityTitle;
 
                     const bookingPayload = {
                         customer: {
@@ -823,7 +862,7 @@
         if (previousStep) {
             previousStep.addEventListener('click', () => {
                 if (checkoutStep === 1) {
-                    window.location.href = 'product.html';
+                    window.location.href = checkoutSourcePage;
                     return;
                 }
 
@@ -834,8 +873,6 @@
 
         addonCards.forEach((card) => {
             const toggle = card.querySelector('[data-addon-toggle]');
-            card.dataset.addonAdult = card.dataset.addonAdult || '1';
-            card.dataset.addonChild = card.dataset.addonChild || '0';
 
             const syncAddonCounts = () => {
                 const adultValue = card.querySelector('[data-addon-value="adult"]');
@@ -844,28 +881,25 @@
                 const adultMinus = card.querySelector('[data-addon-count="minus"][data-addon-target="adult"]');
                 const childMinus = card.querySelector('[data-addon-count="minus"][data-addon-target="child"]');
                 const unitPrice = Number(card.dataset.addonPrice) || 0;
-                const adultCount = Number(card.dataset.addonAdult || 1);
-                const childCount = Number(card.dataset.addonChild || 0);
-                const totalGuests = adultCount + childCount;
 
                 if (adultValue) {
-                    adultValue.textContent = adultCount;
+                    adultValue.textContent = checkoutAdults;
                 }
 
                 if (childValue) {
-                    childValue.textContent = childCount;
+                    childValue.textContent = checkoutChildren;
                 }
 
                 if (adultMinus) {
-                    adultMinus.disabled = adultCount <= 1;
+                    adultMinus.disabled = true;
                 }
 
                 if (childMinus) {
-                    childMinus.disabled = childCount <= 0;
+                    childMinus.disabled = true;
                 }
 
                 if (addonTotal) {
-                    addonTotal.innerHTML = `${formatCheckoutPrice(unitPrice * totalGuests)} <small>/ ${totalGuests} pax</small>`;
+                    addonTotal.innerHTML = `${formatCheckoutPrice(unitPrice)} <small>/ pax</small>`;
                 }
             };
 
@@ -882,20 +916,6 @@
 
             card.querySelectorAll('[data-addon-count]').forEach((button) => {
                 button.addEventListener('click', () => {
-                    const target = button.dataset.addonTarget;
-                    const action = button.dataset.addonCount;
-                    const key = target === 'child' ? 'addonChild' : 'addonAdult';
-                    const min = target === 'child' ? 0 : 1;
-                    const currentValue = Number(card.dataset[key] || min);
-
-                    if (action === 'plus') {
-                        card.dataset[key] = String(currentValue + 1);
-                    }
-
-                    if (action === 'minus') {
-                        card.dataset[key] = String(Math.max(min, currentValue - 1));
-                    }
-
                     syncAddonCounts();
                     syncCheckoutTotal();
                 });
@@ -981,6 +1001,7 @@
         }
 
         syncDate();
+        syncCheckoutProduct();
         syncCheckoutTotal();
         showCheckoutStep(1);
         renderCheckoutCalendar();
