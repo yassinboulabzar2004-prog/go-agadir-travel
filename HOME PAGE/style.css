@@ -1204,6 +1204,10 @@ html{
     border-radius:20px;
 }
 
+.gallery-extra{
+    display:none;
+}
+
 /* ABOUT */
 
 .product-about h2{
@@ -1619,6 +1623,10 @@ html{
 
 body.is-gallery-open{
     overflow:hidden;
+}
+
+body.is-gallery-open .mobile-booking-trigger{
+    display:none !important;
 }
 
 .gallery-lightbox{
@@ -5298,8 +5306,12 @@ body.is-gallery-open{
 
 .time-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(5,1fr);
     gap:14px;
+}
+
+.sandboarding-time-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr));
 }
 
 .time-grid button{
@@ -5366,6 +5378,16 @@ body.is-gallery-open{
     font-size:20px;
     line-height:1.2;
     font-weight:900;
+    text-transform:uppercase;
+}
+
+.tour-option-label{
+    display:block;
+    margin:0 0 8px;
+    color:#ff8a00 !important;
+    font-size:12px !important;
+    font-weight:900;
+    letter-spacing:1.4px;
     text-transform:uppercase;
 }
 
@@ -6241,6 +6263,11 @@ body.is-gallery-open{
 
     .time-grid{
         grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .time-grid button:last-child:nth-child(odd){
+        grid-column:1 / -1;
     }
 
     .addon-card{
@@ -6315,7 +6342,12 @@ body.is-gallery-open{
     }
 
     .time-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .time-grid button:last-child:nth-child(odd){
+        grid-column:1 / -1;
     }
 
     .checkout-actions{
@@ -7206,6 +7238,10 @@ body.is-gallery-open{
         gap:10px;
     }
 
+    .time-grid button:last-child:nth-child(odd){
+        grid-column:1 / -1;
+    }
+
     .time-grid button{
         min-height:52px;
         border-radius:12px;
@@ -7532,7 +7568,3 @@ body.is-gallery-open{
         overflow-wrap:anywhere;
     }
 }
-
-
-
-

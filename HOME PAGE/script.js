@@ -281,7 +281,8 @@
         const next = picker.querySelector('.date-next');
         const monthTitle = picker.querySelector('.luxe-date-head h4');
         const daysGrid = picker.querySelector('.luxe-days');
-        const todayDate = new Date(2026, 4, 26);
+        const todayDate = new Date();
+        todayDate.setHours(0, 0, 0, 0);
         let visibleMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
         let selectedDate = null;
 
@@ -493,19 +494,41 @@
         const addonCards = document.querySelectorAll('[data-addon-card]');
         const summaryAddonRow = document.querySelector('[data-summary-addon-row]');
         const summaryAddon = document.querySelector('[data-summary-addon]');
-        const today = new Date(2026, 4, 26);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
         const requestedDate = new URLSearchParams(window.location.search).get('date');
         const params = new URLSearchParams(window.location.search);
-        const defaultActivityTitle = 'Agadir/Taghazout: Sunset Sandboarding, Quad Bike & Moroccan Dinner';
-        const checkoutActivityTitle = params.get('activity') || defaultActivityTitle;
-        const checkoutSourcePage = params.get('source') || 'product.html';
-        const checkoutSharedPrice = Math.max(1, Number(params.get('sharedPrice')) || 18);
-        const checkoutPrivatePrice = Math.max(1, Number(params.get('privatePrice')) || 90);
+        const checkoutPageName = window.location.pathname.split('/').pop() || 'checkout.html';
+        const checkoutDefaultsByPage = {
+            'checkout.html': {
+                activity: 'Agadir/Taghazout: Sunset Sandboarding, Quad Bike & Moroccan Dinner',
+                source: 'product.html',
+                sharedPrice: 18,
+                privatePrice: 150
+            },
+            'checkout-quad.html': {
+                activity: 'Agadir Quad Bike Adventure: Beach, Mountains & Tea Break',
+                source: 'product-quad.html',
+                sharedPrice: 15,
+                privatePrice: 30
+            },
+            'checkout-paradise.html': {
+                activity: 'Paradise Valley & Atlas Mountains Escape with Breakfast and Lunch',
+                source: 'product-paradise.html',
+                sharedPrice: 20,
+                privatePrice: 150
+            }
+        };
+        const checkoutDefaults = checkoutDefaultsByPage[checkoutPageName] || checkoutDefaultsByPage['checkout.html'];
+        const checkoutActivityTitle = params.get('activity') || checkoutDefaults.activity;
+        const checkoutSourcePage = params.get('source') || checkoutDefaults.source;
+        const checkoutSharedPrice = Math.max(1, Number(params.get('sharedPrice')) || checkoutDefaults.sharedPrice);
+        const checkoutPrivatePrice = Math.max(1, Number(params.get('privatePrice')) || checkoutDefaults.privatePrice);
         const checkoutAdults = Math.max(1, Number(params.get('adults')) || 1);
         const checkoutChildren = Math.max(0, Number(params.get('children')) || 0);
         const checkoutPax = checkoutAdults + checkoutChildren;
         const parsedDate = requestedDate ? new Date(requestedDate) : null;
-        let selectedDate = parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate : new Date(2026, 0, 9);
+        let selectedDate = parsedDate && !Number.isNaN(parsedDate.getTime()) ? parsedDate : new Date(today);
         let visibleMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
         let checkoutStep = 1;
         let corePrice = checkoutSharedPrice * checkoutPax;
@@ -519,35 +542,118 @@
         const formatDate = (date) => `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         const formatShortDate = (date) => `${monthNames[date.getMonth()].slice(0, 3)} ${date.getDate()}, ${date.getFullYear()}`;
         const formatCheckoutPrice = (price) => `€${price}`;
+        const isQuadCheckout = checkoutSourcePage === 'product-quad.html' || /Quad Bike Adventure/i.test(checkoutActivityTitle);
+        const isSandboardingCheckout = checkoutSourcePage === 'product.html' || /Sunset Sandboarding/i.test(checkoutActivityTitle);
+        const isParadiseCheckout = checkoutSourcePage === 'product-paradise.html' || /Paradise Valley/i.test(checkoutActivityTitle);
+        const checkoutOptionContent = isQuadCheckout
+            ? {
+                shared: {
+                    label: 'Option 1',
+                    title: 'Double Quad',
+                    description: 'Enjoy a quad bike tour on a shared quad.',
+                    tags: ['Shared quad', 'Best for 2 riders'],
+                    suffix: '/ person',
+                    pricingMode: 'perPerson',
+                    optionName: 'Double Quad'
+                },
+                private: {
+                    label: 'Option 2',
+                    title: 'Solo Quad',
+                    description: 'Enjoy a quad bike tour on a solo quad.',
+                    tags: ['Solo quad', 'One rider per quad'],
+                    suffix: '/ person',
+                    pricingMode: 'perPerson',
+                    optionName: 'Solo Quad'
+                }
+            }
+            : {
+                shared: {
+                    label: '',
+                    title: 'Shared Group Tour',
+                    description: 'Join a group of fellow explorers. Perfect for solo travelers and couples who want to explore Agadir in a lively, budget-friendly atmosphere with an expert shared guide.',
+                    tags: ['Shared vehicle', 'Standard size group'],
+                    suffix: '/ traveler',
+                    pricingMode: 'perPerson',
+                    optionName: 'Shared Tour'
+                },
+                private: {
+                    label: '',
+                    title: 'Private Premium Tour',
+                    description: 'Secure a private luxury vehicle, dedicated private companion guide, and customized hotel pickup schedules. Great for families and custom pacing settings.',
+                    tags: ['Dedicated luxury vehicle', 'Customizable timing'],
+                    suffix: (isSandboardingCheckout || isParadiseCheckout) ? '/ total up to 8' : '/ total up to 6',
+                    pricingMode: 'fixed',
+                    optionName: 'Private Tour'
+                }
+            };
+
+        const getOptionCorePrice = (option) => {
+            const optionPrice = Number(option.dataset.price) || 0;
+            return option.dataset.pricingMode === 'fixed' ? optionPrice : optionPrice * checkoutPax;
+        };
 
         const syncCheckoutProduct = () => {
             const summaryTitle = document.querySelector('.checkout-summary-card h2');
-            const sharedOption = document.querySelector('[data-tour-option="Shared Tour"]');
-            const privateOption = document.querySelector('[data-tour-option="Private Tour"]');
+            const checkoutOptions = document.querySelectorAll('[data-tour-option]');
+            const sharedOption = checkoutOptions[0];
+            const privateOption = checkoutOptions[1];
+            const applyOptionContent = (option, content, price) => {
+                if (!option) {
+                    return;
+                }
+
+                option.dataset.price = String(price);
+                option.dataset.pricingMode = content.pricingMode;
+                option.dataset.tourOption = content.optionName;
+
+                const label = option.querySelector('.tour-option-label');
+                const title = option.querySelector('h3');
+                const description = option.querySelector('p');
+                const tags = option.querySelectorAll('.option-tags span');
+                const priceLabel = option.querySelector('strong');
+
+                if (label) {
+                    label.textContent = content.label;
+                    label.style.display = content.label ? 'block' : 'none';
+                }
+
+                if (title) {
+                    title.textContent = content.title;
+                }
+
+                if (description) {
+                    description.textContent = content.description;
+                }
+
+                tags.forEach((tag, index) => {
+                    tag.textContent = content.tags[index] || '';
+                });
+
+                if (priceLabel) {
+                    priceLabel.innerHTML = `${formatCheckoutPrice(price)} <small>${content.suffix}</small>`;
+                }
+            };
 
             if (summaryTitle) {
                 summaryTitle.textContent = checkoutActivityTitle;
             }
 
-            if (sharedOption) {
-                sharedOption.dataset.price = String(checkoutSharedPrice);
-                const sharedPriceLabel = sharedOption.querySelector('strong');
-                if (sharedPriceLabel) {
-                    sharedPriceLabel.innerHTML = `${formatCheckoutPrice(checkoutSharedPrice)} <small>/ traveler</small>`;
-                }
-            }
+            applyOptionContent(sharedOption, checkoutOptionContent.shared, checkoutSharedPrice);
+            applyOptionContent(privateOption, checkoutOptionContent.private, checkoutPrivatePrice);
 
-            if (privateOption) {
-                privateOption.dataset.price = String(checkoutPrivatePrice);
-                const privatePriceLabel = privateOption.querySelector('strong');
-                if (privatePriceLabel) {
-                    privatePriceLabel.innerHTML = `${formatCheckoutPrice(checkoutPrivatePrice)} <small>/ total up to 6</small>`;
+            const selectedOption = document.querySelector('[data-tour-option].is-selected') || sharedOption;
+            if (selectedOption) {
+                corePrice = getOptionCorePrice(selectedOption);
+                if (summaryCategory) {
+                    summaryCategory.textContent = selectedOption.dataset.tourOption;
                 }
             }
         };
 
         const syncCheckoutTotal = () => {
-            const selectedAddons = Array.from(addonCards).filter((card) => card.classList.contains('is-added'));
+            const selectedAddons = Array.from(addonCards).filter((card) => {
+                return !card.hidden && card.classList.contains('is-added');
+            });
             addonPrice = selectedAddons.reduce((total, card) => {
                 const unitPrice = Number(card.dataset.addonPrice) || 0;
                 return total + (unitPrice * checkoutPax);
@@ -576,6 +682,23 @@
                     }).join(', ')
                     : 'None';
             }
+        };
+
+        const syncCheckoutAddons = () => {
+            addonCards.forEach((card) => {
+                const isSandboardingOnly = card.dataset.addonScope === 'sandboarding';
+                const shouldHide = isQuadCheckout && isSandboardingOnly;
+
+                card.hidden = shouldHide;
+
+                if (shouldHide && card.classList.contains('is-added')) {
+                    card.classList.remove('is-added');
+                    const toggle = card.querySelector('[data-addon-toggle]');
+                    if (toggle) {
+                        toggle.textContent = 'Add to trip';
+                    }
+                }
+            });
         };
 
         const showCheckoutStep = (step) => {
@@ -734,9 +857,7 @@
                 document.querySelectorAll('[data-tour-option]').forEach((item) => item.classList.remove('is-selected'));
                 option.classList.add('is-selected');
                 summaryCategory.textContent = option.dataset.tourOption;
-                corePrice = option.dataset.tourOption === 'Shared Tour'
-                    ? checkoutSharedPrice * checkoutPax
-                    : Number(option.dataset.price) || 0;
+                corePrice = getOptionCorePrice(option);
                 if (summaryCore) {
                     summaryCore.textContent = formatCheckoutPrice(corePrice);
                 }
@@ -1002,6 +1123,7 @@
 
         syncDate();
         syncCheckoutProduct();
+        syncCheckoutAddons();
         syncCheckoutTotal();
         showCheckoutStep(1);
         renderCheckoutCalendar();
