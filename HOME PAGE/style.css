@@ -3749,7 +3749,7 @@ body.is-gallery-open .mobile-booking-trigger{
     .product-body .home-mobile-menu{
         background:
             linear-gradient(180deg, rgba(10,16,27,0.92), rgba(22,9,4,0.97)),
-            url("images/sandboarding-card.jpg") center/cover no-repeat;
+            url("images/sandboarding-card.webp") center/cover no-repeat;
     }
 
     .product-body .home-mobile-menu::before{
@@ -3978,7 +3978,7 @@ body.is-gallery-open .mobile-booking-trigger{
     position:absolute;
     inset:0;
     z-index:0;
-    background:#111923 url("images/home-hero-camel.jpg?v=img8008") center/cover no-repeat;
+    background:#111923 url("images/home-hero-camel.webp") center/cover no-repeat;
 }
 
 .home-hero-media::before{
@@ -4014,7 +4014,7 @@ body.is-gallery-open .mobile-booking-trigger{
 }
 
 .home-body .home-hero-media img{
-    content:url("images/home-hero-camel.jpg?v=img8008");
+    content:url("images/home-hero-camel.webp");
 }
 
 .home-hero-content{
@@ -6489,7 +6489,7 @@ body.is-gallery-open .mobile-booking-trigger{
         padding:24px 22px 30px;
         background:
             linear-gradient(180deg, rgba(10,16,27,0.90), rgba(22,9,4,0.96)),
-            url("images/home-hero-camel.jpg?v=img8008") center/cover no-repeat;
+            url("images/home-hero-camel.webp") center/cover no-repeat;
         color:#fff;
         transform:translateX(105%);
         transition:transform .28s ease;
@@ -7012,7 +7012,7 @@ body.is-gallery-open .mobile-booking-trigger{
         gap:18px;
         background:
             linear-gradient(135deg, rgba(16,24,40,0.90), rgba(255,138,0,0.28)),
-            url("images/home-hero-camel.jpg?v=img8008") center/cover no-repeat;
+            url("images/home-hero-camel.webp") center/cover no-repeat;
     }
 
     .footer-cta-card p{
