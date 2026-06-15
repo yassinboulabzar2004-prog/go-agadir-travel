@@ -198,49 +198,55 @@ app.post('/send-booking', async (req, res) => {
   const customer = req.body.customer;
   const booking = req.body.booking;
 
-  const customerTemplate = buildEmailTemplate({
-    title: 'Booking request received!',
-    subtitle: 'No payment today - final confirmation is on the way',
-    booking,
-    customer,
-    bookingId
-  });
-
-  const ownerTemplate = buildEmailTemplate({
-    title: 'New booking request',
-    subtitle: 'A traveler submitted a checkout request',
-    booking,
-    customer,
+  res.json({
+    ok: true,
     bookingId,
-    ownerView: true
+    message: 'Booking request received'
   });
 
-  try {
-    await Promise.all([
-      sendResendEmail({
-        to: customer.email,
-        replyTo: process.env.OWNER_EMAIL,
-        subject: `Booking request received - ${booking.activity}`,
-        text: buildTextEmail({ booking, customer, bookingId }),
-        html: customerTemplate
-      }),
-      sendResendEmail({
-        to: process.env.OWNER_EMAIL,
-        replyTo: customer.email,
-        subject: `New booking request: ${booking.activity}`,
-        text: buildTextEmail({ booking, customer, bookingId }),
-        html: ownerTemplate
-      })
-    ]);
+  setImmediate(() => {
+    try {
+      const customerTemplate = buildEmailTemplate({
+        title: 'Booking request received!',
+        subtitle: 'No payment today - final confirmation is on the way',
+        booking,
+        customer,
+        bookingId
+      });
 
-    return res.json({ ok: true, bookingId });
-  } catch (error) {
-    console.error('Booking email failed via Resend:', error);
-    return res.status(500).json({
-      ok: false,
-      message: 'Could not send booking email. Please try again.'
-    });
-  }
+      const ownerTemplate = buildEmailTemplate({
+        title: 'New booking request',
+        subtitle: 'A traveler submitted a checkout request',
+        booking,
+        customer,
+        bookingId,
+        ownerView: true
+      });
+
+      const emailText = buildTextEmail({ booking, customer, bookingId });
+
+      Promise.all([
+        sendResendEmail({
+          to: customer.email,
+          replyTo: process.env.OWNER_EMAIL,
+          subject: `Booking request received - ${booking.activity}`,
+          text: emailText,
+          html: customerTemplate
+        }),
+        sendResendEmail({
+          to: process.env.OWNER_EMAIL,
+          replyTo: customer.email,
+          subject: `New booking request: ${booking.activity}`,
+          text: emailText,
+          html: ownerTemplate
+        })
+      ]).catch((error) => {
+        console.error('Booking email failed via Resend:', error);
+      });
+    } catch (error) {
+      console.error('Booking email setup failed:', error);
+    }
+  });
 });
 
 app.get('/', (_req, res) => {
