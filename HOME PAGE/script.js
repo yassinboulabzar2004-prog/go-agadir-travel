@@ -507,8 +507,8 @@
                 privatePrice: 150
             },
             'checkout-quad.html': {
-                activity: 'Agadir Quad Bike Adventure: Beach, Mountains & Tea Break',
-                source: 'product-quad.html',
+                activity: 'Agadir Quad Bike Beach & Mountain Tour with Mint Tea',
+                source: 'agadir-quad-bike-beach-mountain-mint-tea.html',
                 sharedPrice: 15,
                 privatePrice: 30
             },
@@ -542,7 +542,7 @@
         const formatDate = (date) => `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         const formatShortDate = (date) => `${monthNames[date.getMonth()].slice(0, 3)} ${date.getDate()}, ${date.getFullYear()}`;
         const formatCheckoutPrice = (price) => `€${price}`;
-        const isQuadCheckout = checkoutSourcePage === 'product-quad.html' || /Quad Bike Adventure/i.test(checkoutActivityTitle);
+        const isQuadCheckout = checkoutSourcePage === 'agadir-quad-bike-beach-mountain-mint-tea.html' || /Quad Bike/i.test(checkoutActivityTitle);
         const isSandboardingCheckout = checkoutSourcePage === 'product.html' || /Sunset Sandboarding/i.test(checkoutActivityTitle);
         const isParadiseCheckout = checkoutSourcePage === 'product-paradise.html' || /Paradise Valley/i.test(checkoutActivityTitle);
         const checkoutOptionContent = isQuadCheckout
