@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.querySelector('.home-mobile-menu');
     const mobileMenuToggle = document.querySelector('.home-menu-toggle, .product-mobile-menu-toggle');
     const mobileMenuClose = document.querySelector('.home-menu-close');
@@ -513,8 +513,8 @@
                 privatePrice: 30
             },
             'checkout-paradise.html': {
-                activity: 'Paradise Valley & Atlas Mountains Escape with Breakfast and Lunch',
-                source: 'product-paradise.html',
+                activity: 'Paradise Valley Agadir Day Trip',
+                source: 'paradise-valley-agadir-day-trip.html',
                 sharedPrice: 20,
                 privatePrice: 150
             }
@@ -541,10 +541,10 @@
 
         const formatDate = (date) => `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         const formatShortDate = (date) => `${monthNames[date.getMonth()].slice(0, 3)} ${date.getDate()}, ${date.getFullYear()}`;
-        const formatCheckoutPrice = (price) => `€${price}`;
+        const formatCheckoutPrice = (price) => `�${price}`;
         const isQuadCheckout = checkoutSourcePage === 'agadir-quad-bike-beach-mountain-mint-tea.html' || /Quad Bike/i.test(checkoutActivityTitle);
         const isSandboardingCheckout = checkoutSourcePage === 'product.html' || /Sunset Sandboarding/i.test(checkoutActivityTitle);
-        const isParadiseCheckout = checkoutSourcePage === 'product-paradise.html' || /Paradise Valley/i.test(checkoutActivityTitle);
+        const isParadiseCheckout = checkoutSourcePage === 'paradise-valley-agadir-day-trip.html' || /Paradise Valley/i.test(checkoutActivityTitle);
         const checkoutOptionContent = isQuadCheckout
             ? {
                 shared: {
@@ -719,7 +719,7 @@
 
                 const bubble = item.querySelector('span');
                 if (bubble) {
-                    bubble.textContent = itemStep < step ? '✓' : item.dataset.checkoutStep;
+                    bubble.textContent = itemStep < step ? '?' : item.dataset.checkoutStep;
                 }
             });
 
@@ -1095,7 +1095,7 @@
                 });
 
                 if (pickupClear) {
-                    pickupClear.textContent = query.length > 0 ? '×' : '⌕';
+                    pickupClear.textContent = query.length > 0 ? '�' : '?';
                     pickupClear.classList.toggle('is-clear', query.length > 0);
                 }
 
