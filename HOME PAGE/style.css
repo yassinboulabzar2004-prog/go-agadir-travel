@@ -4162,6 +4162,7 @@ body.is-gallery-open .mobile-booking-trigger{
     font-size:13px;
 }
 
+.home-quad-adventures,
 .home-categories,
 .home-tours,
 .home-how,
@@ -4237,6 +4238,80 @@ body.is-gallery-open .mobile-booking-trigger{
     color:#101828;
     font-size:14px;
     font-weight:900;
+}
+
+.quad-adventure-grid{
+    display:grid;
+    grid-template-columns:repeat(5, minmax(0,1fr));
+    gap:18px;
+}
+
+.quad-adventure-card{
+    position:relative;
+    min-height:260px;
+    display:block;
+    overflow:hidden;
+    border-radius:22px;
+    background:#101828;
+    color:inherit;
+    text-decoration:none;
+    box-shadow:0 18px 45px rgba(119,72,0,0.08);
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.quad-adventure-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(16,24,40,0.06), rgba(16,24,40,0.38));
+    pointer-events:none;
+}
+
+.quad-adventure-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    opacity:0.88;
+    transition:transform 0.35s ease;
+}
+
+.quad-adventure-card span{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:16px;
+    z-index:1;
+    display:inline-flex;
+    width:max-content;
+    max-width:calc(100% - 32px);
+    padding:10px 14px;
+    border-radius:999px;
+    background:#fff;
+    color:#101828;
+    font-size:13px;
+    line-height:1.2;
+    font-weight:900;
+}
+
+.quad-adventure-card:hover,
+.quad-adventure-card:focus-visible{
+    transform:translateY(-4px);
+    box-shadow:0 24px 55px rgba(119,72,0,0.16);
+}
+
+.quad-adventure-card:hover img,
+.quad-adventure-card:focus-visible img{
+    transform:scale(1.06);
+}
+
+.quad-adventure-card:focus-visible{
+    outline:3px solid rgba(255,138,0,0.45);
+    outline-offset:4px;
+}
+
+.home-body article h2[id]{
+    scroll-margin-top:120px;
 }
 
 .tour-tabs{
@@ -6386,6 +6461,7 @@ body.is-gallery-open .mobile-booking-trigger{
     }
 
     .home-stats,
+    .quad-adventure-grid,
     .category-grid,
     .home-tour-grid,
     .how-grid,
@@ -6700,7 +6776,8 @@ body.is-gallery-open .mobile-booking-trigger{
         grid-template-columns:1fr;
     }
 
-    .home-categories,
+.home-quad-adventures,
+.home-categories,
     .home-tours,
     .home-how,
     .home-reviews{
@@ -6737,6 +6814,25 @@ body.is-gallery-open .mobile-booking-trigger{
     .category-grid{
         grid-template-columns:repeat(2, minmax(0,1fr));
         gap:12px;
+    }
+
+    .quad-adventure-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+        gap:12px;
+    }
+
+    .quad-adventure-card{
+        min-height:170px;
+        border-radius:18px;
+    }
+
+    .quad-adventure-card span{
+        left:12px;
+        right:12px;
+        bottom:12px;
+        max-width:calc(100% - 24px);
+        padding:8px 11px;
+        font-size:12px;
     }
 
     .category-grid span{
@@ -7502,6 +7598,7 @@ body.is-gallery-open .mobile-booking-trigger{
         font-size:10px;
     }
 
+    .home-quad-adventures,
     .home-categories,
     .home-tours,
     .home-how,
@@ -7514,8 +7611,17 @@ body.is-gallery-open .mobile-booking-trigger{
         gap:10px;
     }
 
+    .quad-adventure-grid{
+        gap:10px;
+    }
+
     .category-grid article{
         min-height:132px;
+        border-radius:16px;
+    }
+
+    .quad-adventure-card{
+        min-height:148px;
         border-radius:16px;
     }
 
