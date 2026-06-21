@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex, follow">
     <title>Booking Request Received | Go Agadir Travel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2610596441118308"
+     crossorigin="anonymous"></script>
 </head>
 <body class="checkout-body confirmation-body">
     <main class="checkout-page confirmation-page">
@@ -35,7 +37,7 @@
     </main>
 
     <script>
-        const storedBooking = sessionStorage.getItem('lastBookingRequest');
+        const storedBooking = localStorage.getItem('lastBookingRequest') || sessionStorage.getItem('lastBookingRequest');
 
         if (storedBooking) {
             const data = JSON.parse(storedBooking);
@@ -56,7 +58,7 @@
             setText('[data-confirm-addons]', addons.length
                 ? addons.map((addon) => `${addon.name} x ${addon.pax}`).join(', ')
                 : 'None');
-            setText('[data-confirm-total]', booking.totalText || `€${booking.totalPrice || 0}`);
+            setText('[data-confirm-total]', booking.totalText || `\u20AC${booking.totalPrice || 0}`);
         }
     </script>
 </body>

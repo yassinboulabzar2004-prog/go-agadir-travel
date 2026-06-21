@@ -541,8 +541,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formatDate = (date) => `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         const formatShortDate = (date) => `${monthNames[date.getMonth()].slice(0, 3)} ${date.getDate()}, ${date.getFullYear()}`;
-        const formatCheckoutPrice = (price) => `€${price}`;
-        const isQuadCheckout = checkoutSourcePage === 'agadir-quad-bike-beach-mountain-mint-tea.html' || /Quad Bike/i.test(checkoutActivityTitle);
+        const formatCheckoutPrice = (price) => `\u20AC${price}`;
+        const isQuadCheckout = checkoutSourcePage === 'agadir-quad-bike-beach-mountain-mint-tea.html' || /Agadir Quad Bike Beach|Quad Bike Adventure/i.test(checkoutActivityTitle);
         const isSandboardingCheckout = checkoutSourcePage === 'product.html' || /Sunset Sandboarding/i.test(checkoutActivityTitle);
         const isParadiseCheckout = checkoutSourcePage === 'paradise-valley-agadir-day-trip.html' || /Paradise Valley/i.test(checkoutActivityTitle);
         const checkoutOptionContent = isQuadCheckout
@@ -948,34 +948,46 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     };
 
-                    const originalButtonText = nextStep.innerHTML;
-                    nextStep.disabled = true;
-                    nextStep.innerHTML = 'Sending request...';
+                    const bookingId = `GAT-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+                    const storedBooking = {
+                        ...bookingPayload,
+                        bookingId
+                    };
 
                     try {
-                        const response = await fetch("https://go-agadir-travel.onrender.com/send-booking", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(bookingPayload)
-                        });
-                        const result = await response.json().catch(() => ({}));
-
-                        if (!response.ok || !result.ok) {
-                            throw new Error(result.message || 'Could not send booking request.');
-                        }
-
-                        sessionStorage.setItem('lastBookingRequest', JSON.stringify({
-                            ...bookingPayload,
-                            bookingId: result.bookingId
-                        }));
-                        window.location.href = `confirmation.html?booking=${encodeURIComponent(result.bookingId)}`;
-                    } catch (error) {
-                        nextStep.disabled = false;
-                        nextStep.innerHTML = originalButtonText;
-                        alert(`${error.message} Please make sure the booking server is running.`);
+                        localStorage.setItem('lastBookingRequest', JSON.stringify(storedBooking));
+                        sessionStorage.setItem('lastBookingRequest', JSON.stringify(storedBooking));
+                    } catch (storageError) {
+                        console.error('Could not store booking confirmation data:', storageError);
                     }
+
+                    fetch('/send-booking', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(bookingPayload),
+                        keepalive: true
+                    })
+                        .then((response) => response.json().catch(() => ({})).then((result) => {
+                            if (!response.ok || !result.ok) {
+                                throw new Error(result.message || 'Could not send booking request.');
+                            }
+
+                            if (result.bookingId) {
+                                const deliveredBooking = {
+                                    ...storedBooking,
+                                    bookingId: result.bookingId
+                                };
+                                localStorage.setItem('lastBookingRequest', JSON.stringify(deliveredBooking));
+                                sessionStorage.setItem('lastBookingRequest', JSON.stringify(deliveredBooking));
+                            }
+                        }))
+                        .catch((error) => {
+                            console.log('Background booking email request failed:', error);
+                        });
+
+                    window.location.href = `confirmation.html?booking=${encodeURIComponent(bookingId)}`;
                 }
             });
         }
