@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const bookingApiOrigin = 'https://go-agadir-travel.onrender.com';
+    const bookingProductionHosts = new Set(['goagadirtravel.com', 'www.goagadirtravel.com']);
+    const bookingApiUrl = (path) => {
+        const configuredOrigin = window.GO_AGADIR_BOOKING_API_BASE_URL;
+
+        if (configuredOrigin) {
+            return new URL(path, configuredOrigin).toString();
+        }
+
+        if (bookingProductionHosts.has(window.location.hostname)) {
+            return `${bookingApiOrigin}${path}`;
+        }
+
+        return path;
+    };
     const mobileMenu = document.querySelector('.home-mobile-menu');
     const mobileMenuToggle = document.querySelector('.home-menu-toggle, .product-mobile-menu-toggle');
     const mobileMenuClose = document.querySelector('.home-menu-close');
@@ -961,7 +976,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.error('Could not store booking confirmation data:', storageError);
                     }
 
-                    fetch('/send-booking', {
+                    const bookingEmailRequestUrl = bookingApiUrl('/send-booking');
+                    const confirmationUrl = `confirmation.html?booking=${encodeURIComponent(bookingId)}`;
+                    console.log('Sending booking email request...', bookingPayload);
+                    console.log('Booking email request URL:', bookingEmailRequestUrl);
+
+                    fetch(bookingEmailRequestUrl, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -970,6 +990,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         keepalive: true
                     })
                         .then((response) => response.json().catch(() => ({})).then((result) => {
+                            console.log('Booking email response status:', response.status);
+                            console.log('Booking email response:', result);
+
                             if (!response.ok || !result.ok) {
                                 throw new Error(result.message || 'Could not send booking request.');
                             }
@@ -984,10 +1007,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }))
                         .catch((error) => {
-                            console.log('Background booking email request failed:', error);
+                            console.error('Booking email request failed:', error);
                         });
 
-                    window.location.href = `confirmation.html?booking=${encodeURIComponent(bookingId)}`;
+                    window.location.href = confirmationUrl;
                 }
             });
         }
